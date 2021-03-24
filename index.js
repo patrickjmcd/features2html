@@ -1,6 +1,7 @@
 const fs = require("fs");
 const handlebars = require("handlebars");
 const moment = require("moment");
+const glob = require("glob");
 
 // DEFAULT SETTINGS
 var BREAKBEFOREWORD = null;
@@ -103,13 +104,19 @@ const lineIndicatesThatANewScenarioBegins = (line) => {
     );
 };
 
-const getAllFeatureFiles = async (dirName) => {
-    const allFiles = await fs.promises.readdir(dirName);
-    const fullFiles = allFiles.map((f) => `${dirName}/${f}`);
-    const featureFiles = fullFiles
-        .filter((f) => f.split(".").pop() === "feature")
-        .sort();
-    return featureFiles;
+const getAllFeatureFiles = async (dirName, recursive) => {
+    const globPart = recursive ? "**/*.feature" : "*.features";
+    const directory =
+        dirName.slice(-1) === "/" ? dirName.slice(0, -1) : dirName;
+
+    return new Promise((resolve, reject) => {
+        glob.glob(`${directory}/${globPart}`, function (err, files) {
+            if (err) {
+                reject(err);
+            }
+            resolve(files);
+        });
+    });
 };
 
 module.exports.convert = async ({
@@ -118,10 +125,11 @@ module.exports.convert = async ({
     outputFile,
     author,
     productName,
+    recursive,
 }) => {
     const docTemplate = templatesDir + "/doc_template.html";
     const featureTemplate = templatesDir + "/feature_template.html";
-    const featureFiles = await getAllFeatureFiles(inputDir);
+    const featureFiles = await getAllFeatureFiles(inputDir, recursive);
     var docHandlebarTemplate = handlebars.compile(
         await fs.promises.readFile(docTemplate, "utf-8")
     );
@@ -151,6 +159,9 @@ module.exports.convert = async ({
     docData.author = author;
     docData.productname = productName;
     docData.featuresHtml = featuresHtml;
+    docData.listOfFeatures = features
+        .map((f) => `<li class="feature-name">${f.name}</li>`)
+        .join("\n");
     var docHtml = docHandlebarTemplate(docData);
 
     if (outputFile) {

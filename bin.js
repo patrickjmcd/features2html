@@ -32,6 +32,11 @@ commander
         "-b, --break-before-word <breakBeforeWord>",
         "create a line break before every occurrance of this word in the background"
     )
+    .option(
+        "-r, --recursive",
+        "recurse into subfolders to look for feature files",
+        false
+    )
     .action(async (options) => {
         convert(options);
     });

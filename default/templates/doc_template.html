@@ -14,12 +14,23 @@
 </header>
 
 <body>
-<h1>{{productname}}</h1>
+  <h1>{{productname}}</h1>
 
-<p>This is the features documentation for <code>{{productname}}</code>. </p>
+  <div class="description">
+    <p>This is the features documentation for <code>{{productname}}</code>. </p>
+  </div>
+    <div class="feature-list">
+      <h2>Features</h2>
+      <ul >
+        {{{listOfFeatures}}}
+      </ul>
+    </div>
+    
+  <hr />
 
-{{{featuresHtml}}}
+
+    {{{featuresHtml}}}
 
 
-</body>
+  </body>
 </html>
