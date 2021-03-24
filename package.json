@@ -1,6 +1,6 @@
 {
   "name": "features2html",
-  "version": "1.1.0",
+  "version": "1.0.2",
   "description": "Creates HTML files from Feature Files",
   "main": "index.js",
   "repository": "https://github.com/patrickjmcd/features2html",
@@ -12,7 +12,6 @@
     "commander": "^7.2.0",
     "glob": "^7.1.6",
     "handlebars": "^4.7.7",
-    "html-pdf-node": "^1.0.7",
     "i18next": "^20.0.0",
     "line-reader": "^0.4.0",
     "moment": "^2.29.1",
