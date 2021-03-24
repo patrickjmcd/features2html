@@ -9,12 +9,12 @@ commander
     .option(
         "-i, --input-dir <inputDir>",
         "read feature files from path",
-        "examples/features"
+        "./examples/features"
     )
     .option(
         "-t, --templates-dir <templatesDir>",
         "read the files doc_template.html, feature_template.html and style.css from path",
-        "default/templates"
+        "./default/templates"
     )
     .option("-o, --output-file <outputFile>", "send output to file path")
     .option(
