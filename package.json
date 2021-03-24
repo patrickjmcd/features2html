@@ -1,6 +1,6 @@
 {
   "name": "features2html",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Creates HTML files from Feature Files",
   "main": "index.js",
   "repository": "https://github.com/patrickjmcd/features2html",
