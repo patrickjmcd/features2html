@@ -1,0 +1,24 @@
+{
+  "name": "features2html",
+  "version": "1.0.0",
+  "description": "Creates HTML files from Feature Files",
+  "main": "index.js",
+  "repository": "https://github.com/patrickjmcd/features2html",
+  "author": "Patrick McDonagh <patrickjmcd@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "async": "^3.2.0",
+    "commander": "^7.2.0",
+    "handlebars": "^4.7.7",
+    "i18next": "^20.0.0",
+    "line-reader": "^0.4.0",
+    "moment": "^2.29.1",
+    "underscore": "^1.12.1",
+    "underscore.string": "^3.3.5"
+  },
+  "bin": {
+    "feature2html": "./bin.js",
+    "bdd2html": "./bin.js"
+  }
+}
