@@ -105,7 +105,7 @@ const lineIndicatesThatANewScenarioBegins = (line) => {
 };
 
 const getAllFeatureFiles = async (dirName, recursive) => {
-    const globPart = recursive ? "**/*.feature" : "*.features";
+    const globPart = recursive ? "**/*.feature" : "*.feature";
     const directory =
         dirName.slice(-1) === "/" ? dirName.slice(0, -1) : dirName;
 
