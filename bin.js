@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const commander = require("commander");
+const path = require("path");
 const { convert } = require("./index");
 // commands
 commander.version("0.1");
@@ -9,12 +10,12 @@ commander
     .option(
         "-i, --input-dir <inputDir>",
         "read feature files from path",
-        "./examples/features"
+        path.resolve(__dirname, "examples/features")
     )
     .option(
         "-t, --templates-dir <templatesDir>",
         "read the files doc_template.html, feature_template.html and style.css from path",
-        "./default/templates"
+        path.resolve(__dirname, "default/templates")
     )
     .option("-o, --output-file <outputFile>", "send output to file path")
     .option(
