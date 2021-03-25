@@ -2,6 +2,7 @@ const fs = require("fs");
 const handlebars = require("handlebars");
 const moment = require("moment");
 const glob = require("glob");
+const { resolve } = require("path");
 
 // DEFAULT SETTINGS
 var BREAKBEFOREWORD = null;
@@ -108,12 +109,17 @@ const getAllFeatureFiles = async (dirName, recursive) => {
     const globPart = recursive ? "**/*.feature" : "*.feature";
     const directory =
         dirName.slice(-1) === "/" ? dirName.slice(0, -1) : dirName;
-
+    // if the user specifies a .feature file, use the exact path
+    const globSearch =
+        dirName.split(".").pop() === "feature"
+            ? dirName
+            : `${directory}/${globPart}`;
     return new Promise((resolve, reject) => {
-        glob.glob(`${directory}/${globPart}`, function (err, files) {
+        glob.glob(globSearch, function (err, files) {
             if (err) {
                 reject(err);
             }
+            console.log(files);
             resolve(files);
         });
     });
