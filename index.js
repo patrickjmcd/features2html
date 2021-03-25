@@ -119,7 +119,6 @@ const getAllFeatureFiles = async (dirName, recursive) => {
             if (err) {
                 reject(err);
             }
-            console.log(files);
             resolve(files);
         });
     });
