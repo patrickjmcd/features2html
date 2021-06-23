@@ -87,6 +87,7 @@ const parseFeatureFile = async (featureFilename) => {
 
         if (line.includes("Feature: ")) {
             feature.name = line.replace("Feature: ", "");
+            feature.id = feature.name.toLowerCase().replaceAll(" ", "-");
             featureLineWasFound = true;
         }
     }
@@ -165,7 +166,10 @@ module.exports.convert = async ({
     docData.productname = productName;
     docData.featuresHtml = featuresHtml;
     docData.listOfFeatures = features
-        .map((f) => `<li class="feature-name">${f.name}</li>`)
+        .map(
+            (f) =>
+                `<li class="feature-name"><a href="#${f.id}">${f.name}</a></li>`
+        )
         .join("\n");
     var docHtml = docHandlebarTemplate(docData);
 
